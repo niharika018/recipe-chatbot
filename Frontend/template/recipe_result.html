@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Result</title>
+</head>
+<body>
+    <h1>Recipe Result</h1>
+    
+    {% if recipe %}
+        {% for r in recipe %}
+            <h2>Title: {{ r.title }}</h2>
+            <p><strong>Source:</strong> <a href="{{ r.url }}" target="_blank">{{ r.source }}</a></p>
+
+            <h3>Ingredients:</h3>
+            <ul>
+                {% for ingredient in r.ingredients %}
+                    <li>{{ ingredient }}</li>
+                {% endfor %}
+            </ul>
+
+            <h3>Directions:</h3>
+            <ol>
+                {% for direction in r.directions %}
+                    <li>{{ direction }}</li>
+                {% endfor %}
+            </ol>
+
+            <h3>Image:</h3>
+            <img src="{{ r.image }}" alt="Recipe Image" style="max-width: 400px; height: auto;">
+        {% endfor %}
+    {% else %}
+        <p>No recipe found with that title.</p>
+    {% endif %}
+
+    <a href="/">Go back to search</a>
+</body>
+</html>
+
